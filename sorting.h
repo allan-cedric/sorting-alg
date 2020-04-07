@@ -6,8 +6,11 @@
 #include <time.h>
 #include <sys/time.h>
 
-#define TAM 20
-#define TESTES 1
+/* Tamanho dos vetores de teste */
+#define TAM 100
+
+/*Número de testes*/
+#define TESTES 100
 
 /*
     Retorna o tempo de execução
