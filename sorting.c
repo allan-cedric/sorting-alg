@@ -30,7 +30,7 @@ void troca(int *v, int i, int j)
     v[j] = temp;
 }
 
-void bubblesort(int *v, int tam)
+void bubble_sort(int *v, int tam)
 {
     if (!v)
         return;
@@ -45,7 +45,7 @@ void bubblesort(int *v, int tam)
     }
 }
 
-void selectionsort(int *v, int tam)
+void selection_sort(int *v, int tam)
 {
     if (!v)
         return;
