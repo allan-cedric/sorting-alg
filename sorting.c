@@ -77,3 +77,58 @@ void insertion_sort(int *v, int tam)
             v[j] = chave;
     }
 }
+void intercala(int *v, int ini, int meio, int fim)
+{
+    int w[fim - ini + 1];
+    int i = ini, j = meio + 1, k = 0;
+
+    while (i <= meio && j <= fim)
+    {
+        if (v[i] <= v[j])
+            w[k++] = v[i++];
+        else
+            w[k++] = v[j++];
+    }
+
+    while (i <= meio)
+        w[k++] = v[i++];
+    while (j <= fim)
+        w[k++] = v[j++];
+
+    for (i = ini; i <= fim; i++)
+        v[i] = w[i - ini];
+}
+
+void merge_sort(int *v, int ini, int fim)
+{
+    if (ini < fim)
+    {
+        int meio = ini + (fim - ini) / 2;
+        merge_sort(v, ini, meio);
+        merge_sort(v, meio + 1, fim);
+        intercala(v, ini, meio, fim);
+    }
+}
+
+int particiona(int *v, int ini, int fim)
+{
+    int pivo = v[ini];
+    int i, j;
+    for (i = fim, j = fim; j > ini; j--)
+    {
+        if (v[j] > pivo)
+            troca(v, i--, j);
+    }
+    troca(v, i, ini);
+    return i;
+}
+
+void quick_sort(int *v, int ini, int fim)
+{
+    if (ini < fim)
+    {
+        int i_pivo = particiona(v, ini, fim);
+        quick_sort(v, ini, i_pivo - 1);
+        quick_sort(v, i_pivo + 1, fim);
+    }
+}

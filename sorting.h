@@ -24,7 +24,9 @@ void troca(int *v, int i, int j);
 void bubble_sort(int *v, int tam);
 void selection_sort(int *v, int tam);
 void insertion_sort(int *v, int tam);
+void intercala(int *v, int ini, int meio, int fim);
 void merge_sort(int *v, int ini, int fim);
+int particiona(int *v, int ini, int fim);
 void quick_sort(int *v, int ini, int fim);
 
 #endif
