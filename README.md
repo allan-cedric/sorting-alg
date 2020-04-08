@@ -11,7 +11,7 @@ O(n^2):
 	
 O(n*log(n)):
 	
-	- Merge Sort
+	-Merge Sort
 	
-	- Quick Sort
+	-Quick Sort
 	
