@@ -1,7 +1,7 @@
 # sorting-alg
 Algoritmos de ordenação:
 
-## O(n^2):
+### O(n^2):
 
 	-Bubble Sort
 	
@@ -9,7 +9,7 @@ Algoritmos de ordenação:
 	
 	-Insertion Sort
 	
-## O(n*log(n)):
+### O(n*log(n)):
 	
 	-Merge Sort
 	
