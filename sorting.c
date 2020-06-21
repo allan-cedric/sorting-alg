@@ -132,3 +132,56 @@ void quick_sort(int *v, int ini, int fim)
         quick_sort(v, i_pivo + 1, fim);
     }
 }
+
+void imprime_heap(Heap *H)
+{
+    int i;
+    printf("[");
+    for (i = 1; i <= H->tam_vet - 1; i++)
+        printf("%i ", H->h[i]);
+    printf("%i]\n", H->h[H->tam_vet]);
+}
+
+void criar_heap(Heap *H)
+{
+    H->tam_vet = TAM;
+    H->tam_heap = TAM;
+    H->h = malloc(sizeof(int) * (H->tam_vet + 1));
+    int i;
+    for (i = 1; i <= H->tam_vet; i++)
+        H->h[i] = (rand() % (TAM * 3));
+}
+
+void max_heapify(Heap *H, int i)
+{
+    int left = 2 * i, right = 2 * i + 1, maior = i;
+
+    if (left <= H->tam_heap && H->h[left] > H->h[i])
+        maior = left;
+
+    if (right <= H->tam_heap && H->h[right] > H->h[maior])
+        maior = right;
+
+    if (maior != i)
+    {
+        troca(H->h, i, maior);
+        max_heapify(H, maior);
+    }
+}
+
+void build_max_heap(Heap *H)
+{
+    int i;
+    for (i = H->tam_heap / 2; i >= 1; i--)
+        max_heapify(H, i);
+}
+
+void heap_sort(Heap *H)
+{
+    build_max_heap(H);
+    while (H->tam_heap >= 2)
+    {
+        troca(H->h, H->tam_heap--, 1);
+        max_heapify(H, 1);
+    }
+}

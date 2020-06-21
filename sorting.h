@@ -43,9 +43,10 @@ void merge_sort(int *v, int ini, int fim);
 int particiona(int *v, int ini, int fim);
 void quick_sort(int *v, int ini, int fim);
 
-void cria_heap(Heap *H);
+void imprime_heap(Heap *H);
+void criar_heap(Heap *H);
 void max_heapify(Heap *H, int i);
 void build_max_heap(Heap *H);
-void heapsort(Heap *H);
+void heap_sort(Heap *H);
 
 #endif
