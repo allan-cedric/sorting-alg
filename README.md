@@ -14,3 +14,5 @@ Algoritmos de ordenação:
 	-Merge Sort
 	
 	-Quick Sort
+	
+	-Heap Sort
