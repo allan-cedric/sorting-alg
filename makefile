@@ -1,19 +1,15 @@
 CC=gcc
-CFLAGS=-ansi -Wall -lm
+CFLAGS=-Wall -Wextra -lm
 
-EXEC=testa_ordenacao
-OBJ=sorting.o testa_ordenacao.o
+EXEC=evaluate_sorting
+OBJ=sorting.o evaluate_sorting.o
 
-all: testa_ordenacao clean
+all: evaluate_sorting clean
 
-testa_ordenacao: $(OBJ)
-	$(CC) $(OBJ) -o testa_ordenacao $(CFLAGS) 
+evaluate_sorting: $(OBJ)
 
-testa_ordenacao.o: testa_ordenacao.c sorting.h
-	$(CC) -c testa_ordenacao.c $(CFLAGS)
-
+evaluate_sorting.o: evaluate_sorting.c sorting.h
 sorting.o: sorting.c sorting.h
-	$(CC) -c sorting.c $(CFLAGS)
 
 clean:
 	-rm -f $(OBJ) *~
