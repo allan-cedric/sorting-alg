@@ -30,7 +30,7 @@
 
 ## Executando o projeto
 
-```zsh
+```shell
 make
 ./evaluate_sorting
 ./plot.py
