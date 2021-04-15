@@ -1,7 +1,7 @@
 // === Programa que calcula o tempo médio em segundos dos algoritmos de ordenação ===
 #include "sorting.h"
 
-#define MAX_ELEMENTS ((int)1e6)
+#define MAX_ELEMENTS ((int)2e5)
 #define MAX_TESTS ((int)1e2)
 
 void bubble_sort_evaluate(int num_tests, int size);
@@ -12,46 +12,55 @@ void merge_sort_evaluate(int num_tests, int size);
 void quick_sort_evaluate(int num_tests, int size);
 void heap_sort_evaluate(int num_tests, int size);
 
+FILE *arq_csv;
+
 int main()
 {
     srand(time(NULL));
 
-    printf("num_elements,bubble_sort,selection_sort,insertion_sort");
-    printf("merge_sort,quick_sort,heap_sort\n");
-    for(int size = 10; size <= MAX_ELEMENTS; size *= 2)
+    arq_csv = fopen("./data_evaluate_sorting.csv", "w");
+    if (!arq_csv)
     {
-        printf("%i,",size);
+        fprintf(stderr, "Error opening data file\n");
+        exit(1);
+    }
+
+    fprintf(arq_csv, "num_elements,bubble_sort,selection_sort,insertion_sort,");
+    fprintf(arq_csv, "merge_sort,quick_sort,heap_sort\n");
+    for (int size = 10; size <= MAX_ELEMENTS; size *= 2)
+    {
+        fprintf(arq_csv, "%i,", size);
 
         bubble_sort_evaluate(MAX_TESTS, size);
-        printf(",");
+        fputc(',', arq_csv);
 
         selection_sort_evaluate(MAX_TESTS, size);
-        printf(",");
+        fputc(',', arq_csv);
 
         insertion_sort_evaluate(MAX_TESTS, size);
-        printf(",");
+        fputc(',', arq_csv);
 
         merge_sort_evaluate(MAX_TESTS, size);
-        printf(",");
+        fputc(',', arq_csv);
 
         quick_sort_evaluate(MAX_TESTS, size);
-        printf(",");
+        fputc(',', arq_csv);
 
         heap_sort_evaluate(MAX_TESTS, size);
-        printf("\n");
+        fputc('\n', arq_csv);
     }
+    fclose(arq_csv);
 
     return 0;
 }
 
 void bubble_sort_evaluate(int num_tests, int size)
 {
-    int arr[size];
+    int *arr = make_array(size);
 
     double t_begin, t_end, t_sum = 0.0;
     for (int i = 0; i < num_tests; i++)
     {
-        make_array(arr, size);
         // print_array(arr, size);
 
         t_begin = timestamp();
@@ -59,20 +68,21 @@ void bubble_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-
         t_sum += ((t_end - t_begin) / 1000.0);
+
+        update_array(arr, size);
     }
-    printf("%f", (t_sum / num_tests));
+    free(arr);
+    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
 }
 
 void selection_sort_evaluate(int num_tests, int size)
 {
-    int arr[size];
+    int *arr = make_array(size);
 
     double t_begin, t_end, t_sum = 0.0;
     for (int i = 0; i < num_tests; i++)
     {
-        make_array(arr, size);
         // print_array(arr, size);
 
         t_begin = timestamp();
@@ -80,20 +90,21 @@ void selection_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-
         t_sum += ((t_end - t_begin) / 1000.0);
+
+        update_array(arr, size);
     }
-    printf("%f", (t_sum / num_tests));
+    free(arr);
+    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
 }
 
 void insertion_sort_evaluate(int num_tests, int size)
 {
-    int arr[size];
+    int *arr = make_array(size);
 
     double t_begin, t_end, t_sum = 0.0;
     for (int i = 0; i < num_tests; i++)
     {
-        make_array(arr, size);
         // print_array(arr, size);
 
         t_begin = timestamp();
@@ -101,20 +112,21 @@ void insertion_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-
         t_sum += ((t_end - t_begin) / 1000.0);
+
+        update_array(arr, size);
     }
-    printf("%f", (t_sum / num_tests));
+    free(arr);
+    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
 }
 
 void merge_sort_evaluate(int num_tests, int size)
 {
-    int arr[size];
+    int *arr = make_array(size);
 
     double t_begin, t_end, t_sum = 0.0;
     for (int i = 0; i < num_tests; i++)
     {
-        make_array(arr, size);
         // print_array(arr, size);
 
         t_begin = timestamp();
@@ -122,20 +134,21 @@ void merge_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-
         t_sum += ((t_end - t_begin) / 1000.0);
+
+        update_array(arr, size);
     }
-    printf("%f", (t_sum / num_tests));
+    free(arr);
+    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
 }
 
 void quick_sort_evaluate(int num_tests, int size)
 {
-    int arr[size];
+    int *arr = make_array(size);
 
     double t_begin, t_end, t_sum = 0.0;
     for (int i = 0; i < num_tests; i++)
     {
-        make_array(arr, size);
         // print_array(arr, size);
 
         t_begin = timestamp();
@@ -143,20 +156,22 @@ void quick_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-
         t_sum += ((t_end - t_begin) / 1000.0);
+
+        update_array(arr, size);
     }
-    printf("%f", (t_sum / num_tests));
+    free(arr);
+    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
 }
 
 void heap_sort_evaluate(int num_tests, int size)
 {
     Heap hp;
+    make_heap(&hp, size);
 
     double t_begin, t_end, t_sum = 0.0;
     for (int i = 0; i < num_tests; i++)
     {
-        make_heap(&hp, size);
         // print_heap(&hp);
 
         t_begin = timestamp();
@@ -164,8 +179,12 @@ void heap_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_heap(&hp);
-
         t_sum += ((t_end - t_begin) / 1000.0);
+
+        hp.arr_size = size;
+        hp.heap_size = size;
+        update_array(hp.arr, hp.arr_size);
     }
-    printf("%f", (t_sum / num_tests));
+    free(hp.arr);
+    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
 }

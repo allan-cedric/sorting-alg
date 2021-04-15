@@ -4,7 +4,7 @@ CFLAGS=-Wall -Wextra -lm
 EXEC=evaluate_sorting
 OBJ=sorting.o evaluate_sorting.o
 
-all: evaluate_sorting clean
+all: evaluate_sorting
 
 evaluate_sorting: $(OBJ)
 

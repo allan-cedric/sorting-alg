@@ -15,7 +15,19 @@ void print_array(int *arr, int size)
     printf("%i]\n", arr[size - 1]);
 }
 
-void make_array(int *arr, int size)
+int *make_array(int size)
+{
+    int *arr = (int *)malloc(size * sizeof(int));
+    if (!arr)
+    {
+        fprintf(stderr, "Memory allocation error!\n");
+        exit(1);
+    }
+    update_array(arr, size);
+    return arr;
+}
+
+void update_array(int *arr, int size)
 {
     for (int i = 0; i < size; i++)
         arr[i] = (rand() % (size * 3));
@@ -140,9 +152,7 @@ void make_heap(Heap *H, int size)
 {
     H->arr_size = size;
     H->heap_size = size;
-    H->arr = malloc(sizeof(int) * (H->arr_size + 1));
-    for (int i = 1; i <= H->arr_size; i++)
-        H->arr[i] = (rand() % (size * 3));
+    H->arr = make_array(H->arr_size + 1);
 }
 
 void max_heapify(Heap *H, int i)

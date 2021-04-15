@@ -21,8 +21,11 @@ double timestamp(void);
 // === Imprime um vetor no console ===
 void print_array(int *arr, int size);
 
-// === Gera um vetor aleatório ===
-void make_array(int *arr, int size);
+// === Gera um vetor aleatório, e retorna um ponteiro no mesmo ===
+int *make_array(int size);
+
+// === Atualiza um vetor com valores aleatórios ===
+void update_array(int *arr, int size);
 
 // === Troca dois elementos de um array ===
 void swap_array(int *arr, int i, int j);
