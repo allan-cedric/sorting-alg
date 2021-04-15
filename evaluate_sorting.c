@@ -1,8 +1,8 @@
-// === Programa que calcula o tempo médio em segundos dos algoritmos de ordenação ===
+// === Programa que calcula o tempo médio em milissegundos dos principais algoritmos de ordenação ===
 #include "sorting.h"
 
 #define MAX_ELEMENTS ((int)2e5)
-#define MAX_TESTS ((int)1e2)
+#define MAX_TESTS ((int)5)
 
 void bubble_sort_evaluate(int num_tests, int size);
 void selection_sort_evaluate(int num_tests, int size);
@@ -68,12 +68,12 @@ void bubble_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-        t_sum += ((t_end - t_begin) / 1000.0);
+        t_sum += (t_end - t_begin);
 
         update_array(arr, size);
     }
     free(arr);
-    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
+    fprintf(arq_csv, "%.2f", (t_sum / num_tests));
 }
 
 void selection_sort_evaluate(int num_tests, int size)
@@ -90,12 +90,12 @@ void selection_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-        t_sum += ((t_end - t_begin) / 1000.0);
+        t_sum += (t_end - t_begin);
 
         update_array(arr, size);
     }
     free(arr);
-    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
+    fprintf(arq_csv, "%.2f", (t_sum / num_tests));
 }
 
 void insertion_sort_evaluate(int num_tests, int size)
@@ -112,12 +112,12 @@ void insertion_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-        t_sum += ((t_end - t_begin) / 1000.0);
+        t_sum += (t_end - t_begin);
 
         update_array(arr, size);
     }
     free(arr);
-    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
+    fprintf(arq_csv, "%.2f", (t_sum / num_tests));
 }
 
 void merge_sort_evaluate(int num_tests, int size)
@@ -134,12 +134,12 @@ void merge_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-        t_sum += ((t_end - t_begin) / 1000.0);
+        t_sum += (t_end - t_begin);
 
         update_array(arr, size);
     }
     free(arr);
-    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
+    fprintf(arq_csv, "%.2f", (t_sum / num_tests));
 }
 
 void quick_sort_evaluate(int num_tests, int size)
@@ -156,12 +156,12 @@ void quick_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_array(arr, size);
-        t_sum += ((t_end - t_begin) / 1000.0);
+        t_sum += (t_end - t_begin);
 
         update_array(arr, size);
     }
     free(arr);
-    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
+    fprintf(arq_csv, "%.2f", (t_sum / num_tests));
 }
 
 void heap_sort_evaluate(int num_tests, int size)
@@ -179,12 +179,12 @@ void heap_sort_evaluate(int num_tests, int size)
         t_end = timestamp();
 
         // print_heap(&hp);
-        t_sum += ((t_end - t_begin) / 1000.0);
+        t_sum += (t_end - t_begin);
 
         hp.arr_size = size;
         hp.heap_size = size;
         update_array(hp.arr, hp.arr_size);
     }
     free(hp.arr);
-    fprintf(arq_csv, "%.4f", (t_sum / num_tests));
+    fprintf(arq_csv, "%.2f", (t_sum / num_tests));
 }
