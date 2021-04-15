@@ -18,7 +18,7 @@
 	
 *	`Heap Sort`
 
-### Arquivos
+## Arquivos
 
 *	`sorting.h` \ `sorting.c`: Biblioteca onde estão implementados os algoritmos de ordenação.
 
