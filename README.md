@@ -31,9 +31,9 @@
 ## Executando o projeto
 
 ```shell
-make
-./evaluate_sorting
-./plot.py
+$ > make
+$ > ./evaluate_sorting
+$ > ./plot.py
 ```
 
 
